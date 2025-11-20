@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <title>Video Synchronization Results</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <link rel="stylesheet" href="../files/styles.css">
+</head>
+
+<body>
+  <nav class="nav-links">
+    <div class="nav-row">
+      <a href="../results.html">Qualitative Comparison</a>
+    </div>
+    <div class="nav-row">
+      <!-- <a href="wild.html">In-the-wild Results</a> -->
+      <a href="egohumans.html">Egohumans Results</a>
+      <a href="panoptic.html">Panoptic Results</a>
+      <a href="3dpop.html" class="active">3D-POP Results</a>
+      <a href="blender.html">UDBD Results</a>
+    </div>
+  </nav>
+
+  <div class="selectors">
+    <div class="scene-selector">
+      <h3>Scene</h3>
+      <ul class="nav-pills" id="scene-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeScene(0)">Sequence 1</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeScene(1)">Sequence 2</a></li>
+      </ul>
+    </div>
+
+    <div class="method-selector">
+      <h3>Method</h3>
+      <ul class="nav-pills" id="method-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeMethod(0)">Unsync</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeMethod(1)">VisualSync (Ours)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <h3>Top: multi-view videos. Bottom: timeline. Use the control bar to play/pause all videos in the group.</h3>
+  </div>
+
+  <div id="wrapper">
+
+    <!-- Sequence 1 Videos -->
+    <div class="video-container sequence70-video unsync-video" style="display: none;">
+      <h3>Sequence 1 - Unsync - View 1</h3>
+      <video class="sync-sequence70-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence70/ours/sequence70_n11_cam04_22576_22772_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container sequence70-video unsync-video" style="display: none;">
+      <h3>Sequence 1 - Unsync - View 2</h3>
+      <video class="sync-sequence70-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence70/ours/sequence70_n11_cam02_22513_22750_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container sequence70-video unsync-video" style="display: none;">
+      <h3>Sequence 1 - Unsync - View 3</h3>
+      <video class="sync-sequence70-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence70/ours/sequence70_n11_cam03_22507_22770_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container sequence70-video unsync-video" style="display: none;">
+      
+      <video class="sync-sequence70-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence70/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container sequence70-video visualsync-video" style="display: none;">
+      <h3>Sequence 1 - VisualSync (ours) - View 1</h3>
+      <video class="sync-sequence70-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence70/ours/sequence70_n11_cam04_22576_22772_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container sequence70-video visualsync-video" style="display: none;">
+      <h3>Sequence 1 - VisualSync (ours) - View 2</h3>
+      <video class="sync-sequence70-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence70/ours/sequence70_n11_cam02_22513_22750_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container sequence70-video visualsync-video" style="display: none;">
+      <h3>Sequence 1 - VisualSync (ours) - View 3</h3>
+      <video class="sync-sequence70-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence70/ours/sequence70_n11_cam03_22507_22770_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container sequence70-video visualsync-video" style="display: none;">
+      
+      <video class="sync-sequence70-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence70/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Sequence 2 Videos -->
+    <div class="video-container sequence69-video unsync-video">
+      <h3>Sequence 2 - Unsync - View 1</h3>
+      <video class="sync-sequence69-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence69/ours/sequence69_n05_cam01_4098_4262_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container sequence69-video unsync-video">
+      <h3>Sequence 2 - Unsync - View 2</h3>
+      <video class="sync-sequence69-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence69/ours/sequence69_n05_cam03_4108_4275_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container sequence69-video unsync-video">
+      <h3>Sequence 2 - Unsync - View 3</h3>
+      <video class="sync-sequence69-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence69/ours/sequence69_n05_cam02_4060_4314_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container sequence69-video unsync-video">
+      <video class="sync-sequence69-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence69/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container sequence69-video visualsync-video" style="display: none;">
+      <h3>Sequence 2 - VisualSync (ours) - View 1</h3>
+      <video class="sync-sequence69-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence69/ours/sequence69_n05_cam01_4098_4262_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container sequence69-video visualsync-video" style="display: none;">
+      <h3>Sequence 2 - VisualSync (ours) - View 2</h3>
+      <video class="sync-sequence69-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence69/ours/sequence69_n05_cam03_4108_4275_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container sequence69-video visualsync-video" style="display: none;">
+      <h3>Sequence 2 - VisualSync (ours) - View 3</h3>
+      <video class="sync-sequence69-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence69/ours/sequence69_n05_cam02_4060_4314_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container sequence69-video visualsync-video" style="display: none;">
+      
+      <video class="sync-sequence69-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/3dpop/sequence69/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+  </div>
+
+  <script src="common.js"></script>
+  <script>
+    // Initialize page-specific configuration
+    initPageConfig({
+      scenes: ['sequence70', 'sequence69'],
+      methods: ['unsync', 'visualsync'],
+      syncSelectors: {
+        sequence69: {
+          unsync: '.sync-sequence69-unsync',
+          visualsync: '.sync-sequence69-visualsync'
+        },
+        sequence70: {
+          unsync: '.sync-sequence70-unsync',
+          visualsync: '.sync-sequence70-visualsync'
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
