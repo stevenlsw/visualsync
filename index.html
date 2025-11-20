@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Multi-View Dynamic Videos Synchronization.">
+  <meta name="keywords" content="video synchronization, multi-view, epipolar geometry">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VisualSync: Multi-Camera Synchronization via Cross-View Object Motion</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <script>
+    // Video synchronization for each row independently
+    document.addEventListener('DOMContentLoaded', function() {
+      // Function to sync a group of videos
+      function syncVideoGroup(videoSelector) {
+        let isUpdating = false;
+        const videos = document.querySelectorAll(videoSelector);
+
+        videos.forEach((video, index) => {
+          // Play event
+          video.addEventListener('play', () => {
+            if (isUpdating) return;
+            isUpdating = true;
+            videos.forEach((otherVideo, otherIndex) => {
+              if (otherIndex !== index && otherVideo.paused) {
+                otherVideo.currentTime = video.currentTime;
+                otherVideo.play().catch(() => {});
+              }
+            });
+            isUpdating = false;
+          });
+
+          // Pause event
+          video.addEventListener('pause', () => {
+            if (isUpdating) return;
+            isUpdating = true;
+            videos.forEach((otherVideo, otherIndex) => {
+              if (otherIndex !== index && !otherVideo.paused) {
+                otherVideo.pause();
+              }
+            });
+            isUpdating = false;
+          });
+
+          // Seeked event
+          video.addEventListener('seeked', () => {
+            if (isUpdating) return;
+            isUpdating = true;
+            videos.forEach((otherVideo, otherIndex) => {
+              if (otherIndex !== index && Math.abs(otherVideo.currentTime - video.currentTime) > 0.1) {
+                otherVideo.currentTime = video.currentTime;
+              }
+            });
+            isUpdating = false;
+          });
+
+          // Time update for drift correction
+          video.addEventListener('timeupdate', () => {
+            if (isUpdating || video.paused) return;
+            const tolerance = 0.3;
+            videos.forEach((otherVideo, otherIndex) => {
+              if (otherIndex !== index && !otherVideo.paused) {
+                const timeDiff = Math.abs(otherVideo.currentTime - video.currentTime);
+                if (timeDiff > tolerance) {
+                  otherVideo.currentTime = video.currentTime;
+                }
+              }
+            });
+          });
+        });
+      }
+
+      // Sync NBA videos
+      syncVideoGroup('.unsync-row-videos');
+      syncVideoGroup('.sync-row-videos');
+      
+      // Sync EFL videos
+      syncVideoGroup('.efl-unsync-videos');
+      syncVideoGroup('.efl-sync-videos');
+      
+      // Sync Insight videos
+      syncVideoGroup('.insight-videos');
+      
+      // Sync Application videos
+      syncVideoGroup('.application-videos');
+      
+      // Initialize carousel
+      bulmaCarousel.attach('#results-carousel', {
+        slidesToScroll: 1,
+        slidesToShow: 1
+      });
+    });
+  </script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <style>
+    /* Gradient text style for VisualSync */
+    .gradient-text {
+      background-image: linear-gradient(to right, #FFD700, #FF6B6B, #4169E1);
+      /* Yellow to Red to Blue */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
+    }
+  </style>
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+  
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="gradient-text">VisualSync: Multi-Camera Synchronization via Cross-View Object Motion</span></h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://stevenlsw.github.io">Shaowei Liu*</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://davidyao99.github.io/">David Yifan Yao*</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://saurabhg.web.illinois.edu/">Saurabh Gupta&#8224</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://shenlong.web.illinois.edu/">Shenlong Wang&#8224</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">NeurIPS 2025</span>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2512.02017"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2512.02017"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v="
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                  <a href="https://x.com/stevenpg8/status/1996478940962271350" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>1-Minute Intro</span>
+                  </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/stevenlsw/visualsync"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Wild Videos Carousel -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <p style="font-size: 1.3rem; margin-bottom: 1rem;">
+        <strong>TL;DR:</strong><span class="gradient-text">VisualSync</span> synchronizes multi-view in-the-wild videos. The synchronized outputs can benefit dynamic reconstruction, novel view synthesis, and multi-view data engines.
+      </p>
+      <p style="margin-bottom: 2rem;">
+        <p style="font-size: 1rem;">NBA and EFL sync results shown below. Play/pause to view synchronized keyframes.</p>
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <div id="results-carousel" class="carousel results-carousel">
+      <!-- NBA Slide -->
+      <div class="item" data-scene="NBA">
+        <div id="wild-results-wrapper">
+      <!-- Row 1: Unsynchronized Videos -->
+      <div class="wild-video-wrapper view-1">
+        <div class="wild-video-container">
+          <video class="unsync-row-videos" autoplay loop muted playsinline controls>
+            <source src="static/videos/wild/nba/ours/oq7OWPL5F9E_440_520_1/unsync.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h3>Unsync Input - View 1</h3>
+      </div>
+
+      <div class="wild-video-wrapper view-2">
+        <div class="wild-video-container">
+          <video class="unsync-row-videos" autoplay loop muted playsinline controls>
+            <source src="static/videos/wild/nba/ours/oq7OWPL5F9E_540_620_0/unsync.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h3>Unsync Input - View 2</h3>
+      </div>
+
+      <div class="wild-video-wrapper view-3">
+        <div class="wild-video-container">
+          <video class="unsync-row-videos" autoplay loop muted playsinline controls>
+            <source src="static/videos/wild/nba/ours/oq7OWPL5F9E_730_820_2/unsync.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h3>Unsync Input - View 3</h3>
+      </div>
+
+      <!-- Row 2: Synchronized Videos -->
+      <div class="wild-video-wrapper view-1">
+        <div class="wild-video-container">
+          <video class="sync-row-videos" autoplay loop muted playsinline controls>
+            <source src="static/videos/wild/nba/ours/oq7OWPL5F9E_440_520_1/sync.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h3>Sync Output - View 1</h3>
+      </div>
+
+      <div class="wild-video-wrapper view-2">
+        <div class="wild-video-container">
+          <video class="sync-row-videos" autoplay loop muted playsinline controls>
+            <source src="static/videos/wild/nba/ours/oq7OWPL5F9E_540_620_0/sync.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h3>Sync Output - View 2</h3>
+      </div>
+
+      <div class="wild-video-wrapper view-3">
+        <div class="wild-video-container">
+          <video class="sync-row-videos" autoplay loop muted playsinline controls>
+            <source src="static/videos/wild/nba/ours/oq7OWPL5F9E_730_820_2/sync.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h3>Sync Output - View 3</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- EFL Slide -->
+  <div class="item" data-scene="EFL">
+    <div id="efl-results-wrapper">
+      <!-- Row 1: Unsynchronized Videos -->
+      <div class="wild-video-wrapper view-1">
+            <div class="wild-video-container">
+              <video class="efl-unsync-videos" autoplay loop muted playsinline controls>
+                <source src="static/videos/wild/efl/ours/Z5TlCImQNK0_150_200_1/unsync.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h3>Unsync Input - View 1</h3>
+          </div>
+
+          <div class="wild-video-wrapper view-2">
+            <div class="wild-video-container">
+              <video class="efl-unsync-videos" autoplay loop muted playsinline controls>
+                <source src="static/videos/wild/efl/ours/Z5TlCImQNK0_575_625_2/unsync.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h3>Unsync Input - View 2</h3>
+          </div>
+
+          <div class="wild-video-wrapper view-3">
+            <div class="wild-video-container">
+              <video class="efl-unsync-videos" autoplay loop muted playsinline controls>
+                <source src="static/videos/wild/efl/ours/Z5TlCImQNK0_800_860_0/unsync.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h3>Unsync Input - View 3</h3>
+          </div>
+
+          <!-- Row 2: Synchronized Videos -->
+          <div class="wild-video-wrapper view-1">
+            <div class="wild-video-container">
+              <video class="efl-sync-videos" autoplay loop muted playsinline controls>
+                <source src="static/videos/wild/efl/ours/Z5TlCImQNK0_150_200_1/sync.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h3>Sync Output - View 1</h3>
+          </div>
+
+          <div class="wild-video-wrapper view-2">
+            <div class="wild-video-container">
+              <video class="efl-sync-videos" autoplay loop muted playsinline controls>
+                <source src="static/videos/wild/efl/ours/Z5TlCImQNK0_575_625_2/sync.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h3>Sync Output - View 2</h3>
+          </div>
+
+          <div class="wild-video-wrapper view-3">
+            <div class="wild-video-container">
+              <video class="efl-sync-videos" autoplay loop muted playsinline controls>
+                <source src="static/videos/wild/efl/ours/Z5TlCImQNK0_800_860_0/sync.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h3>Sync Output - View 3</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0; margin-top: -1rem;">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Today, people can easily record memorable moments, ranging from concerts, sports events, lectures, family gatherings, and birthday parties with multiple consumer cameras. 
+            However, synchronizing these cross-camera streams remains challenging. Existing methods assume controlled settings, specific targets, manual correction, or costly hardware. 
+            We present <span class="gradient-text">VisualSync</span>, an optimization framework based on multi-view dynamics that aligns unposed, unsynchronized videos at millisecond accuracy. 
+            Our key insight is that any moving 3D point, when co-visible in two cameras, obeys epipolar constraints once properly synchronized. 
+            To exploit this, <span class="gradient-text">VisualSync</span> leverages off-the-shelf 3D reconstruction, feature matching, and dense tracking to extract tracklets, relative poses, and cross-view correspondences. 
+            It then jointly minimizes the epipolar error to estimate each camera's time offset. 
+            Experiments on four diverse, challenging datasets show that <span class="gradient-text">VisualSync</span> outperforms baseline methods, achieving an median synchronization error below 50 ms.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                  <h2 class="title is-3">Video</h2>
+                  <div class="publication-video">
+                    <iframe src="https://www.youtube.com/embed/" frameborder="0"
+                      allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+    / Paper video. -->
+    
+    <div class="container is-max-desktop">
+      <!-- Insight. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Insight</h2>
+          <div class="content has-text-justified">
+            <p>
+              When cameras are time-aligned, keypoint tracks align with epipolar lines; misalignment causes deviations. Minimizing these deviations across tracklets recovers the correct time offset.
+            </p>
+          </div>
+          <div class="hero-body" style="margin-top: -1rem;">
+            <img src="static/figs/insight.png" alt="teaser" width="100%" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Insight Videos -->
+      <div class="content has-text-centered" style="margin-bottom: 2rem; margin-top: -1rem;">
+        <p style="font-size: 1rem;"><span style="color: green;">Green dots</span> show a pair of correspondences in two videos. The <span style="color: red;">red line</span> shows the epipolar line of two cameras.
+          The deviation of the <span style="color: green;">green dots</span> from the <span style="color: red;">red line</span> tells the synchronization error.
+        </p>
+      </div>
+      
+      <div class="columns is-centered" style="margin-top: 1rem;">
+        <div class="column is-half">
+          <p style="text-align: center; font-size: 1rem; margin-bottom: 1rem;">Unsynchronized video pair (<span style="color: green;">green dot</span> not on the <span style="color: red;">red line</span>)</p>
+          <video class="insight-videos" autoplay loop muted playsinline controls style="width: 100%; border-radius: 8px;">
+            <source src="static/videos/insight/volleyball_aria01_47_135__volleyball_cam09_32_131_offset_-20.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="column is-half">
+          <p style="text-align: center; font-size: 1rem; margin-bottom: 1rem;">Synchronized video pair (<span style="color: green;">green dot</span> on the <span style="color: red;">red line</span>)</p>
+          <video class="insight-videos" autoplay loop muted playsinline controls style="width: 100%; border-radius: 8px;">
+            <source src="static/videos/insight/volleyball_aria01_47_135__volleyball_cam09_32_131_offset_15.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Insight. -->
+    </div>
+
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered" style="margin-top: 3rem;">Method</h2>
+
+      <!-- Method Details -->
+      <div class="columns is-centered has-text-centered" style="margin-top: 1rem;">
+        <div class="column is-four-fifths">
+          <div class="content has-text-centered">
+            <p>
+              We extract cross-video temporal correspondences and estimate camera poses to compute epipolar lines. We estimate pairwise video offsets by minimizing epipolar violations over matched correspondences. Later we perform global optimization to align all videos.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-body" style="margin-top: -1rem;">
+        <img src="static/figs/method.png" alt="teaser" width="100%" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Results Section -->
+<section class="section" id="Results" style="margin-top: -5rem;">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Synchronization Results</h2>
+    <!-- <div class="content has-text-centered">
+      <p>
+        Explore synchronization results across multiple datasets. Click the tabs to navigate between different scenes and methods.
+      </p>
+    </div> -->
+    <div class="iframe-container" style="width: 100%; height: 820px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; margin-top: 1rem;">
+      <iframe src="results.html" style="width: 100%; height: 100%; border: none; display: block;" title="Results"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Example Application Section -->
+<section class="section" style="padding-top: 0; margin-top: -1rem;">
+  <div class="container is-max-desktop">
+    <!-- Application. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Example Application: Novel View Synthesis</h2>
+        <div class="content has-text-justified">
+          <p>
+            We train K-Planes on CMU Panoptic multi-view videos for novel view synthesis. Unsynchronized inputs (1st) produce blurry results, while our synchronized outputs (2nd) are sharp and comparable to ground-truth sync (3rd). Our method enables high-quality synthesis from unsynchronized inputs.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application Videos -->
+    <div class="columns is-centered" style="margin-top: 2rem;">
+      <div class="column is-one-third">
+        <div class="content has-text-centered">
+          <p style="font-size: 1rem; margin-bottom: 1rem;">Original Unsynchronized Video Inputs</p>
+          <video class="application-videos" autoplay loop muted playsinline controls style="width: 100%; border-radius: 8px;">
+            <source src="static/videos/application/unsync_novel.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="content has-text-centered">
+          <p style="font-size: 1rem; margin-bottom: 1rem;">Our Synchronized Video Input</p>
+          <video class="application-videos" autoplay loop muted playsinline controls style="width: 100%; border-radius: 8px;">
+            <source src="static/videos/application/ours_sync_novel.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="content has-text-centered">
+          <p style="font-size: 1rem; margin-bottom: 1rem;">Ground-truth Sync Video Input</p>
+          <video class="application-videos" autoplay loop muted playsinline controls style="width: 100%; border-radius: 8px;">
+            <source src="static/videos/application/gt_sync_novel.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--/ Application. -->
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{liu2025visualsync,
+author    = {Liu, Shaowei and Yao, David Yifan and Gupta, Saurabh and Wang, Shenlong},
+title     = {VisualSync: Multi-Camera Synchronization via Cross-View Object Motion},
+journal   = {NeurIPS},
+year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer""">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://arxiv.org/pdf/2512.02017"
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/stevenlsw/visualsync" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <div class="columns is-centered">
+            <p>
+              This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Here</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <title>Video Synchronization Results</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <link rel="stylesheet" href="../files/styles.css">
+</head>
+
+<body>
+  <nav class="nav-links">
+    <div class="nav-row">
+      <a href="../results.html">Qualitative Comparison</a>
+    </div>
+    <div class="nav-row">
+      <!-- <a href="wild.html">In-the-wild Results</a> -->
+      <a href="egohumans.html">Egohumans Results</a>
+      <a href="panoptic.html" class="active">Panoptic Results</a>
+      <a href="3dpop.html">3D-POP Results</a>
+      <a href="blender.html">UDBD Results</a>
+    </div>
+  </nav>
+
+  <div class="selectors">
+    <div class="scene-selector">
+      <h3>Scene</h3>
+      <ul class="nav-pills" id="scene-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeScene(0)">Piazza</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeScene(1)">Sports</a></li>
+      </ul>
+    </div>
+
+    <div class="method-selector">
+      <h3>Method</h3>
+      <ul class="nav-pills" id="method-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeMethod(0)">Unsync</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeMethod(1)">VisualSync (Ours)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <h3>Top: multi-view videos. Bottom: timeline. Use the control bar to play/pause all videos in the group.</h3>
+  </div>
+
+  <div id="wrapper">
+    <!-- Piazza Videos -->
+    <div class="video-container pan160906-video unsync-video">
+      <h3>Piazza - Unsync - View 1</h3>
+      <video class="sync-pan160906-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan160906/ours/pan160906_pizza1_cam04_398_591_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container pan160906-video unsync-video">
+      <h3>Piazza - Unsync - View 2</h3>
+      <video class="sync-pan160906-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan160906/ours/pan160906_pizza1_cam29_363_559_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container pan160906-video unsync-video">
+      <h3>Piazza - Unsync - View 3</h3>
+      <video class="sync-pan160906-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan160906/ours/pan160906_pizza1_cam10_312_557_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container pan160906-video unsync-video">
+      <video class="sync-pan160906-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan160906/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container pan160906-video visualsync-video" style="display: none;">
+      <h3>Piazza - VisualSync (ours) - View 1</h3>
+      <video class="sync-pan160906-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan160906/ours/pan160906_pizza1_cam04_398_591_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container pan160906-video visualsync-video" style="display: none;">
+      <h3>Piazza - VisualSync (ours) - View 2</h3>
+      <video class="sync-pan160906-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan160906/ours/pan160906_pizza1_cam29_363_559_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container pan160906-video visualsync-video" style="display: none;">
+      <h3>Piazza - VisualSync (ours) - View 3</h3>
+      <video class="sync-pan160906-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan160906/ours/pan160906_pizza1_cam10_312_557_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container pan160906-video visualsync-video" style="display: none;">
+      
+      <video class="sync-pan160906-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan160906/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Sports Videos -->
+    <div class="video-container pan161029-video unsync-video" style="display: none;">
+      <h3>Sports - Unsync - View 1</h3>
+      <video class="sync-pan161029-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan161029/ours/pan161029_sports1_cam23_2220_2412_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container pan161029-video unsync-video" style="display: none;">
+      <h3>Sports - Unsync - View 2</h3>
+      <video class="sync-pan161029-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan161029/ours/pan161029_sports1_cam25_2212_2440_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container pan161029-video unsync-video" style="display: none;">
+      <h3>Sports - Unsync - View 3</h3>
+      <video class="sync-pan161029-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan161029/ours/pan161029_sports1_cam18_2235_2467_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container pan161029-video unsync-video" style="display: none;">
+      
+      <video class="sync-pan161029-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan161029/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container pan161029-video visualsync-video" style="display: none;">
+      <h3>Sports - VisualSync (ours) - View 1</h3>
+      <video class="sync-pan161029-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan161029/ours/pan161029_sports1_cam23_2220_2412_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container pan161029-video visualsync-video" style="display: none;">
+      <h3>Sports - VisualSync (ours) - View 2</h3>
+      <video class="sync-pan161029-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan161029/ours/pan161029_sports1_cam25_2212_2440_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container pan161029-video visualsync-video" style="display: none;">
+      <h3>Sports - VisualSync (ours) - View 3</h3>
+      <video class="sync-pan161029-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan161029/ours/pan161029_sports1_cam18_2235_2467_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container pan161029-video visualsync-video" style="display: none;">
+      
+      <video class="sync-pan161029-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/panoptic/pan161029/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+  </div>
+
+  <script src="common.js"></script>
+  <script>
+    // Initialize page-specific configuration
+    initPageConfig({
+      scenes: ['pan160906', 'pan161029'],
+      methods: ['unsync', 'visualsync'],
+      syncSelectors: {
+        pan160906: {
+          unsync: '.sync-pan160906-unsync',
+          visualsync: '.sync-pan160906-visualsync'
+        },
+        pan161029: {
+          unsync: '.sync-pan161029-unsync',
+          visualsync: '.sync-pan161029-visualsync'
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

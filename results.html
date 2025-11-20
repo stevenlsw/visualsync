@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <title>Video Synchronization Results</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <link rel="stylesheet" href="files/styles.css">
+</head>
+
+<body>
+  <nav class="nav-links">
+    <div class="nav-row">
+      <a href="index.html#Results" class="active">Qualitative Comparison</a>
+    </div>
+    <div class="nav-row">
+      <!-- <a href="files/wild.html">In-the-wild Results</a> -->
+      <a href="files/egohumans.html">Egohumans Results</a>
+      <a href="files/panoptic.html">Panoptic Results</a>
+      <a href="files/3dpop.html">3D-POP Results</a>
+      <a href="files/blender.html">UDBD Results</a>
+    </div>
+  </nav>
+
+  <div class="selectors">
+    <div class="scene-selector">
+      <h3>Scene</h3>
+      <ul class="nav-pills" id="scene-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeScene(0)">Volleyball</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeScene(1)">Tennis</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeScene(2)">Badminton</a></li>
+      </ul>
+    </div>
+
+    <div class="method-selector">
+    <h3>Method</h3>
+    <ul class="nav-pills" id="method-selector">
+      <li class="active"><a href="javascript:void(0);" onclick="ChangeMethod(0);">Unsync</a></li>
+      <li><a href="javascript:void(0);" onclick="ChangeMethod(1);">VisualSync (Ours)</a></li>
+      <li><a href="javascript:void(0);" onclick="ChangeMethod(2);">Uni4D</a></li>
+      <li><a href="javascript:void(0);" onclick="ChangeMethod(3);">Mast3R</a></li>
+    </ul>
+  </div>
+  </div>
+
+  <div class="instructions">
+    <h3>Top: multi-view videos. Bottom: timeline. Use the control bar to play/pause all videos in the group.</h3>
+  </div>
+
+  <div id="wrapper">
+    <!-- Volleyball Videos -->
+    <div class="video-container volleyball-video unsync-video">
+      <h3>Volleyball - Unsync - View 1</h3>
+      <video class="sync-volleyball1-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/ours/volleyball_cam01_47_123_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container volleyball-video unsync-video">
+      <h3>Volleyball - Unsync - View 2</h3>
+      <video class="sync-volleyball1-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/ours/volleyball_cam02_49_131_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container volleyball-video unsync-video">
+      <h3>Volleyball - Unsync - View 3</h3>
+      <video class="sync-volleyball1-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/ours/volleyball_aria03_40_129_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container volleyball-video unsync-video">
+      <video class="sync-volleyball1-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container volleyball-video visualsync-video" style="display: none;">
+      <h3>Volleyball - VisualSync (ours) - View 1</h3>
+      <video class="sync-volleyball1-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/ours/volleyball_cam01_47_123_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container volleyball-video visualsync-video" style="display: none;">
+      <h3>Volleyball - VisualSync (ours) - View 2</h3>
+      <video class="sync-volleyball1-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/ours/volleyball_cam02_49_131_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container volleyball-video visualsync-video" style="display: none;">
+      <h3>Volleyball - VisualSync (ours) - View 3</h3>
+      <video class="sync-volleyball1-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/ours/volleyball_aria03_40_129_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container volleyball-video visualsync-video" style="display: none;">
+      
+      <video class="sync-volleyball1-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <div class="video-container volleyball-video uni4d-video" style="display: none;">
+      <h3>Volleyball - Uni4D - View 1</h3>
+      <video class="sync-volleyball1-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/uni4d/volleyball_cam01_47_123_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container volleyball-video uni4d-video" style="display: none;">
+      <h3>Volleyball - Uni4D - View 2</h3>
+      <video class="sync-volleyball1-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/uni4d/volleyball_cam02_49_131_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container volleyball-video uni4d-video" style="display: none;">
+      <h3>Volleyball - Uni4D - View 3</h3>
+      <video class="sync-volleyball1-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/uni4d/volleyball_aria03_40_129_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container volleyball-video uni4d-video" style="display: none;">
+      
+      <video class="sync-volleyball1-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/uni4d/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container volleyball-video mast3r-video" style="display: none;">
+      <h3>Volleyball - Mast3R - View 1</h3>
+      <video class="sync-volleyball1-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/mast3r/volleyball_cam01_47_123_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container volleyball-video mast3r-video" style="display: none;">
+      <h3>Volleyball - Mast3R - View 2</h3>
+      <video class="sync-volleyball1-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/mast3r/volleyball_cam02_49_131_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container volleyball-video mast3r-video" style="display: none;">
+      <h3>Volleyball - Mast3R - View 3</h3>
+      <video class="sync-volleyball1-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/mast3r/volleyball_aria03_40_129_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container volleyball-video mast3r-video" style="display: none;">
+      
+      <video class="sync-volleyball1-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/volleyball1/mast3r/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <!-- Tennis Videos -->
+    <div class="video-container tennis-video unsync-video" style="display: none;">
+      <h3>Tennis - Unsync - View 1</h3>
+      <video class="sync-tennis-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/ours/tennis_cam06_46_121_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tennis-video unsync-video" style="display: none;">
+      <h3>Tennis - Unsync - View 2</h3>
+      <video class="sync-tennis-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/ours/tennis_cam15_9_101_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tennis-video unsync-video" style="display: none;">
+      <h3>Tennis - Unsync - View 3</h3>
+      <video class="sync-tennis-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/ours/tennis_aria01_22_132_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container tennis-video unsync-video" style="display: none;">
+      
+      <video class="sync-tennis-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container tennis-video visualsync-video" style="display: none;">
+      <h3>Tennis - VisualSync (ours) - View 1</h3>
+      <video class="sync-tennis-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/ours/tennis_cam06_46_121_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tennis-video visualsync-video" style="display: none;">
+      <h3>Tennis - VisualSync (ours) - View 2</h3>
+      <video class="sync-tennis-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/ours/tennis_cam15_9_101_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tennis-video visualsync-video" style="display: none;">
+      <h3>Tennis - VisualSync (ours) - View 3</h3>
+      <video class="sync-tennis-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/ours/tennis_aria01_22_132_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <div class="timeline-container tennis-video visualsync-video" style="display: none;">
+      
+      <video class="sync-tennis-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <div class="video-container tennis-video uni4d-video" style="display: none;">
+      <h3>Tennis - uni4d - View 1</h3>
+      <video class="sync-tennis-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/uni4d/tennis_cam06_46_121_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tennis-video uni4d-video" style="display: none;">
+      <h3>Tennis - uni4d - View 2</h3>
+      <video class="sync-tennis-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/uni4d/tennis_cam15_9_101_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tennis-video uni4d-video" style="display: none;">
+      <h3>Tennis - uni4d - View 3</h3>
+      <video class="sync-tennis-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/uni4d/tennis_aria01_22_132_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <div class="timeline-container tennis-video uni4d-video" style="display: none;">
+      
+      <video class="sync-tennis-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/uni4d/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <div class="video-container tennis-video mast3r-video" style="display: none;">
+      <h3>Tennis - Mast3R - View 1</h3>
+      <video class="sync-tennis-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/mast3r/tennis_cam06_46_121_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tennis-video mast3r-video" style="display: none;">
+      <h3>Tennis - Mast3R - View 2</h3>
+      <video class="sync-tennis-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/mast3r/tennis_cam15_9_101_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tennis-video mast3r-video" style="display: none;">
+      <h3>Tennis - Mast3R - View 3</h3>
+      <video class="sync-tennis-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/mast3r/tennis_aria01_22_132_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <div class="timeline-container tennis-video mast3r-video" style="display: none;">
+      
+      <video class="sync-tennis-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/tennis/mast3r/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <!-- Badminton Videos -->
+    <div class="video-container badminton-video unsync-video" style="display: none;">
+      <h3>Badminton - Unsync - View 1</h3>
+      <video class="sync-badminton-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/ours/badminton_aria04_43_95_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container badminton-video unsync-video" style="display: none;">
+      <h3>Badminton - Unsync - View 2</h3>
+      <video class="sync-badminton-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/ours/badminton_cam02_25_89_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container badminton-video unsync-video" style="display: none;">
+      <h3>Badminton - Unsync - View 3</h3>
+      <video class="sync-badminton-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/ours/badminton_cam14_1_96_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container badminton-video unsync-video" style="display: none;">
+      
+      <video class="sync-badminton-unsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container badminton-video visualsync-video" style="display: none;">
+      <h3>Badminton - VisualSync (ours) - View 1</h3>
+      <video class="sync-badminton-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/ours/badminton_aria04_43_95_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container badminton-video visualsync-video" style="display: none;">
+      <h3>Badminton - VisualSync (ours) - View 2</h3>
+      <video class="sync-badminton-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/ours/badminton_cam02_25_89_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container badminton-video visualsync-video" style="display: none;">
+      <h3>Badminton - VisualSync (ours) - View 3</h3>
+      <video class="sync-badminton-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/ours/badminton_cam14_1_96_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <div class="timeline-container badminton-video visualsync-video" style="display: none;">
+      
+      <video class="sync-badminton-visualsync" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <div class="video-container badminton-video uni4d-video" style="display: none;">
+      <h3>Badminton - uni4d - View 1</h3>
+      <video class="sync-badminton-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/uni4d/badminton_aria04_43_95_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container badminton-video uni4d-video" style="display: none;">
+      <h3>Badminton - uni4d - View 2</h3>
+      <video class="sync-badminton-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/uni4d/badminton_cam02_25_89_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container badminton-video uni4d-video" style="display: none;">
+      <h3>Badminton - uni4d - View 3</h3>
+      <video class="sync-badminton-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/uni4d/badminton_cam14_1_96_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <div class="timeline-container badminton-video uni4d-video" style="display: none;">
+      
+      <video class="sync-badminton-uni4d" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/uni4d/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <div class="video-container badminton-video mast3r-video" style="display: none;">
+      <h3>Badminton - Mast3R - View 1</h3>
+      <video class="sync-badminton-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/mast3r/badminton_aria04_43_95_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container badminton-video mast3r-video" style="display: none;">
+      <h3>Badminton - Mast3R - View 2</h3>
+      <video class="sync-badminton-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/mast3r/badminton_cam02_25_89_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container badminton-video mast3r-video" style="display: none;">
+      <h3>Badminton - Mast3R - View 3</h3>
+      <video class="sync-badminton-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/mast3r/badminton_cam14_1_96_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <div class="timeline-container badminton-video mast3r-video" style="display: none;">
+      
+      <video class="sync-badminton-mast3r" autoplay loop muted playsinline controls>
+        <source src="static/videos/comparison/badminton/mast3r/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+  <script>
+    // Global variables for video synchronization
+    let isUpdating = false;
+    let activeVideoGroup = [];
+
+    // Video synchronization functionality
+    function clearAllVideoListeners() {
+      document.querySelectorAll('video').forEach(video => {
+        if (video._syncHandlers) {
+          video.removeEventListener('play', video._syncHandlers.play);
+          video.removeEventListener('pause', video._syncHandlers.pause);
+          video.removeEventListener('seeked', video._syncHandlers.seeked);
+          video.removeEventListener('timeupdate', video._syncHandlers.timeupdate);
+          video._syncHandlers = null;
+        }
+      });
+      activeVideoGroup = [];
+    }
+
+    function syncVideosInGroup(groupSelector) {
+      clearAllVideoListeners();
+      
+      const videos = Array.from(document.querySelectorAll(groupSelector)).filter(video => 
+        video.closest('.video-container, .timeline-container').style.display !== 'none'
+      );
+      
+      if (videos.length === 0) return;
+      
+      activeVideoGroup = videos;
+
+      videos.forEach((video, index) => {
+        const handlers = {
+          play: () => {
+            if (isUpdating) return;
+            isUpdating = true;
+            videos.forEach((otherVideo, otherIndex) => {
+              if (otherIndex !== index && otherVideo.paused) {
+                otherVideo.currentTime = video.currentTime;
+                otherVideo.play().catch(() => {}); // Ignore promise rejections
+              }
+            });
+            isUpdating = false;
+          },
+
+          pause: () => {
+            if (isUpdating) return;
+            isUpdating = true;
+            videos.forEach((otherVideo, otherIndex) => {
+              if (otherIndex !== index && !otherVideo.paused) {
+                otherVideo.pause();
+              }
+            });
+            isUpdating = false;
+          },
+
+          seeked: () => {
+            if (isUpdating) return;
+            isUpdating = true;
+            videos.forEach((otherVideo, otherIndex) => {
+              if (otherIndex !== index && Math.abs(otherVideo.currentTime - video.currentTime) > 0.1) {
+                otherVideo.currentTime = video.currentTime;
+              }
+            });
+            isUpdating = false;
+          },
+
+          timeupdate: () => {
+            // Light synchronization during playback to handle drift
+            if (isUpdating || video.paused) return;
+            
+            const tolerance = 0.3; // Allow 300ms drift before correction
+            videos.forEach((otherVideo, otherIndex) => {
+              if (otherIndex !== index && !otherVideo.paused) {
+                const timeDiff = Math.abs(otherVideo.currentTime - video.currentTime);
+                if (timeDiff > tolerance) {
+                  otherVideo.currentTime = video.currentTime;
+                }
+              }
+            });
+          }
+        };
+
+        video._syncHandlers = handlers;
+        video.addEventListener('play', handlers.play);
+        video.addEventListener('pause', handlers.pause);
+        video.addEventListener('seeked', handlers.seeked);
+        video.addEventListener('timeupdate', handlers.timeupdate);
+      });
+    }
+
+    const videoContainers = document.querySelectorAll('.video-container');
+    const colors = ['#3498DB', '#2ECC71', '#F39C12']; // Blue, Green, Orange
+
+    videoContainers.forEach((container, index) => {
+      const colorIndex = index % colors.length;
+      container.style.borderColor = colors[colorIndex];
+    });
+
+    let currentScene = 0;
+    let currentMethod = 0;
+
+    const scenes = ['volleyball', 'tennis', 'badminton'];
+    const methods = ['unsync', 'visualsync', 'uni4d', 'mast3r'];
+
+    function updateView() {
+      // Clear existing video synchronization
+      clearAllVideoListeners();
+
+      // Hide all videos
+      document.querySelectorAll('.video-container, .timeline-container').forEach(container => {
+        container.style.display = 'none';
+      });
+
+      // Show current scene and method
+      const sceneClass = scenes[currentScene] + '-video';
+      const methodClass = methods[currentMethod] + '-video';
+      
+      document.querySelectorAll('.' + sceneClass + '.' + methodClass).forEach(container => {
+        container.style.display = 'block';
+      });
+
+      // Update active tab styles
+      document.querySelectorAll('#scene-selector li').forEach((li, idx) =>
+        li.classList.toggle('active', idx === currentScene)
+      );
+      document.querySelectorAll('#method-selector li').forEach((li, idx) =>
+        li.classList.toggle('active', idx === currentMethod)
+      );
+
+      // Set up video synchronization for the currently visible videos
+      setTimeout(() => {
+        const currentSceneName = scenes[currentScene];
+        const currentMethodName = methods[currentMethod];
+        
+        // Sync videos based on their class names
+        const syncSelectors = {
+          volleyball: {
+            unsync: '.sync-volleyball1-unsync',
+            visualsync: '.sync-volleyball1-visualsync',
+            uni4d: '.sync-volleyball1-uni4d',
+            mast3r: '.sync-volleyball1-mast3r'
+          },
+          tennis: {
+            unsync: '.sync-tennis-unsync',
+            visualsync: '.sync-tennis-visualsync',
+            uni4d: '.sync-tennis-uni4d',
+            mast3r: '.sync-tennis-mast3r'
+          },
+          badminton: {
+            unsync: '.sync-badminton-unsync',
+            visualsync: '.sync-badminton-visualsync',
+            uni4d: '.sync-badminton-uni4d',
+            mast3r: '.sync-badminton-mast3r'
+          },
+        };
+
+        const selector = syncSelectors[currentSceneName]?.[currentMethodName];
+        if (selector) {
+          syncVideosInGroup(selector);
+        }
+      }, 150); // Increased delay to ensure DOM is fully updated
+    }
+
+    function ChangeScene(index) {
+      currentScene = index;
+      updateView();
+    }
+
+    function ChangeMethod(index) {
+      currentMethod = index;
+      updateView();
+    }
+
+    window.onload = updateView;
+  </script>
+
+</body>
+
+</html>
+

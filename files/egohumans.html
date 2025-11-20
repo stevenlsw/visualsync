@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <title>Video Synchronization Results</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <link rel="stylesheet" href="../files/styles.css">
+</head>
+
+<body>
+  <nav class="nav-links">
+    <div class="nav-row">
+      <a href="../results.html">Qualitative Comparison</a>
+    </div>
+    <div class="nav-row">
+      <!-- <a href="wild.html">In-the-wild Results</a> -->
+      <a href="egohumans.html" class="active">Egohumans Results</a>
+      <a href="panoptic.html">Panoptic Results</a>
+      <a href="3dpop.html">3D-POP Results</a>
+      <a href="blender.html">UDBD Results</a>
+    </div>
+  </nav>
+
+  <div class="selectors">
+    <div class="scene-selector">
+      <h3>Scene</h3>
+      <ul class="nav-pills" id="scene-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeScene(0)">Basketball</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeScene(1)">Tagging</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeScene(2)">Lego Assemble</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeScene(3)">Fencing</a></li>
+      </ul>
+    </div>
+
+    <div class="method-selector">
+      <h3>Method</h3>
+      <ul class="nav-pills" id="method-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeMethod(0)">Unsync</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeMethod(1)">VisualSync (Ours)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <h3>Top: multi-view videos. Bottom: timeline. Use the control bar to play/pause all videos in the group.</h3>
+  </div>
+
+  <div id="wrapper">
+    <!-- Basketball Videos -->
+    <div class="video-container basketball-video unsync-video">
+      <h3>Basketball - Unsync - View 1</h3>
+      <video class="sync-basketball1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/basketball1/ours/basketball_aria02_50_100_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container basketball-video unsync-video">
+      <h3>Basketball - Unsync - View 2</h3>
+      <video class="sync-basketball1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/basketball1/ours/basketball_aria04_2_104_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container basketball-video unsync-video">
+      <h3>Basketball - Unsync - View 3</h3>
+      <video class="sync-basketball1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/basketball1/ours/basketball_cam01_11_146_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container basketball-video unsync-video">
+      <video class="sync-basketball1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/basketball1/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container basketball-video visualsync-video" style="display: none;">
+      <h3>Basketball - VisualSync (ours) - View 1</h3>
+      <video class="sync-basketball1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/basketball1/ours/basketball_aria02_50_100_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container basketball-video visualsync-video" style="display: none;">
+      <h3>Basketball - VisualSync (ours) - View 2</h3>
+      <video class="sync-basketball1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/basketball1/ours/basketball_aria04_2_104_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container basketball-video visualsync-video" style="display: none;">
+      <h3>Basketball - VisualSync (ours) - View 3</h3>
+      <video class="sync-basketball1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/basketball1/ours/basketball_cam01_11_146_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container basketball-video visualsync-video" style="display: none;">
+      
+      <video class="sync-basketball1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/basketball1/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Tagging Videos -->
+    <div class="video-container tagging-video unsync-video" style="display: none;">
+      <h3>Tagging - Unsync - View 1</h3>
+      <video class="sync-tagging1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/tagging1/ours/tagging_aria01_40_116_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tagging-video unsync-video" style="display: none;">
+      <h3>Tagging - Unsync - View 2</h3>
+      <video class="sync-tagging1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/tagging1/ours/tagging_aria03_29_147_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tagging-video unsync-video" style="display: none;">
+      <h3>Tagging - Unsync - View 3</h3>
+      <video class="sync-tagging1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/tagging1/ours/tagging_aria02_8_131_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container tagging-video unsync-video" style="display: none;">
+      
+      <video class="sync-tagging1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/tagging1/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container tagging-video visualsync-video" style="display: none;">
+      <h3>Tagging - VisualSync (ours) - View 1</h3>
+      <video class="sync-tagging1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/tagging1/ours/tagging_aria01_40_116_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tagging-video visualsync-video" style="display: none;">
+      <h3>Tagging - VisualSync (ours) - View 2</h3>
+      <video class="sync-tagging1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/tagging1/ours/tagging_aria03_29_147_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container tagging-video visualsync-video" style="display: none;">
+      <h3>Tagging - VisualSync (ours) - View 3</h3>
+      <video class="sync-tagging1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/tagging1/ours/tagging_aria02_8_131_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container tagging-video visualsync-video" style="display: none;">
+      
+      <video class="sync-tagging1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/tagging1/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Lego Assemble Videos -->
+    <div class="video-container legoassemble-video unsync-video" style="display: none;">
+      <h3>Lego Assemble - Unsync - View 1</h3>
+      <video class="sync-legoassemble1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/legoassemble1/ours/legoassemble_cam08_2_118_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container legoassemble-video unsync-video" style="display: none;">
+      <h3>Lego Assemble - Unsync - View 2</h3>
+      <video class="sync-legoassemble1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/legoassemble1/ours/legoassemble_aria01_18_149_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container legoassemble-video unsync-video" style="display: none;">
+      <h3>Lego Assemble - Unsync - View 3</h3>
+      <video class="sync-legoassemble1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/legoassemble1/ours/legoassemble_cam03_16_149_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container legoassemble-video unsync-video" style="display: none;">
+      
+      <video class="sync-legoassemble1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/legoassemble1/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container legoassemble-video visualsync-video" style="display: none;">
+      <h3>Lego Assemble - VisualSync (ours) - View 1</h3>
+      <video class="sync-legoassemble1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/legoassemble1/ours/legoassemble_cam08_2_118_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container legoassemble-video visualsync-video" style="display: none;">
+      <h3>Lego Assemble - VisualSync (ours) - View 2</h3>
+      <video class="sync-legoassemble1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/legoassemble1/ours/legoassemble_aria01_18_149_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container legoassemble-video visualsync-video" style="display: none;">
+      <h3>Lego Assemble - VisualSync (ours) - View 3</h3>
+      <video class="sync-legoassemble1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/legoassemble1/ours/legoassemble_cam03_16_149_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container legoassemble-video visualsync-video" style="display: none;">
+      
+      <video class="sync-legoassemble1-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/legoassemble1/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Fencing Videos -->
+    <div class="video-container fencing-video unsync-video" style="display: none;">
+      <h3>Fencing - Unsync - View 1</h3>
+      <video class="sync-fencing1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/fencing1/ours/fencing_aria03_18_101_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container fencing-video unsync-video" style="display: none;">
+      <h3>Fencing - Unsync - View 2</h3>
+      <video class="sync-fencing1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/fencing1/ours/fencing_aria02_18_149_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container fencing-video unsync-video" style="display: none;">
+      <h3>Fencing - Unsync - View 3</h3>
+      <video class="sync-fencing1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/fencing1/ours/fencing_aria01_3_138_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container fencing-video unsync-video" style="display: none;">
+      
+      <video class="sync-fencing1-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/fencing1/ours/unsync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-container fencing-video visualsync-video" style="display: none;">
+      <h3>Fencing - VisualSync (ours) - View 1</h3>
+      <video class="sync-fencing-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/fencing1/ours/fencing_aria03_18_101_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container fencing-video visualsync-video" style="display: none;">
+      <h3>Fencing - VisualSync (ours) - View 2</h3>
+      <video class="sync-fencing-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/fencing1/ours/fencing_aria02_18_149_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container fencing-video visualsync-video" style="display: none;">
+      <h3>Fencing - VisualSync (ours) - View 3</h3>
+      <video class="sync-fencing-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/fencing1/ours/fencing_aria01_3_138_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="timeline-container fencing-video visualsync-video" style="display: none;">
+      
+      <video class="sync-fencing-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/egohumans/fencing1/ours/sync_timelines.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script src="common.js"></script>
+  <script>
+    // Initialize page-specific configuration
+    initPageConfig({
+      scenes: ['basketball', 'tagging', 'legoassemble', 'fencing'],
+      methods: ['unsync', 'visualsync'],
+      syncSelectors: {
+        basketball: {
+          unsync: '.sync-basketball1-unsync',
+          visualsync: '.sync-basketball1-visualsync'
+        },
+        tagging: {
+          unsync: '.sync-tagging1-unsync',
+          visualsync: '.sync-tagging1-visualsync'
+        },
+        legoassemble: {
+          unsync: '.sync-legoassemble1-unsync',
+          visualsync: '.sync-legoassemble1-visualsync'
+        },
+        fencing: {
+          unsync: '.sync-fencing1-unsync',
+          visualsync: '.sync-fencing-visualsync'
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <title>Video Synchronization Results</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <nav class="nav-links">
+    <div class="nav-row">
+      <a href="../results.html">Qualitative Comparison</a>
+    </div>
+    <div class="nav-row">
+      <!-- <a href="wild.html" class="active">In-the-wild Results</a> -->
+      <a href="egohumans.html">Egohumans Results</a>
+      <a href="panoptic.html">Panoptic Results</a>
+      <a href="3dpop.html">3D-POP Results</a>
+      <a href="blender.html">UDBD Results</a>
+    </div>
+  </nav>
+
+  <div class="selectors">
+    <div class="scene-selector">
+      <h3>Scene</h3>
+      <ul class="nav-pills" id="scene-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeScene(0)">NBA</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeScene(1)">EFL</a></li>
+      </ul>
+    </div>
+
+    <div class="method-selector">
+      <h3>Method</h3>
+      <ul class="nav-pills" id="method-selector">
+        <li class="active"><a href="javascript:void(0);" onclick="ChangeMethod(0)">Unsync</a></li>
+        <li><a href="javascript:void(0);" onclick="ChangeMethod(1)">VisualSync (Ours)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <h3>Use the control bar to play/pause all videos in the group.</h3>
+  </div>
+
+  <div id="wrapper">
+    <!-- NBA Videos -->
+    <div class="video-container nba-video unsync-video">
+      <h3>NBA - Unsync - View 1</h3>
+      <video class="sync-nba-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/nba/ours/oq7OWPL5F9E_540_620_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container nba-video unsync-video">
+      <h3>NBA - Unsync - View 2</h3>
+      <video class="sync-nba-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/nba/ours/oq7OWPL5F9E_440_520_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container nba-video unsync-video">
+      <h3>NBA - Unsync - View 3</h3>
+      <video class="sync-nba-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/nba/ours/oq7OWPL5F9E_730_820_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  
+    <div class="video-container nba-video visualsync-video" style="display: none;">
+      <h3>NBA - VisualSync (ours) - View 1</h3>
+      <video class="sync-nba-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/nba/ours/oq7OWPL5F9E_540_620_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container nba-video visualsync-video" style="display: none;">
+      <h3>NBA - VisualSync (ours) - View 2</h3>
+      <video class="sync-nba-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/nba/ours/oq7OWPL5F9E_440_520_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container nba-video visualsync-video" style="display: none;">
+      <h3>NBA - VisualSync (ours) - View 3</h3>
+      <video class="sync-nba-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/nba/ours/oq7OWPL5F9E_730_820_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- EFL Videos -->
+    <div class="video-container efl-video unsync-video" style="display: none;">
+      <h3>EFL - Unsync - View 1</h3>
+      <video class="sync-efl-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/efl/ours/Z5TlCImQNK0_800_860_0/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container efl-video unsync-video" style="display: none;">
+      <h3>EFL - Unsync - View 2</h3>
+      <video class="sync-efl-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/efl/ours/Z5TlCImQNK0_150_200_1/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container efl-video unsync-video" style="display: none;">
+      <h3>EFL - Unsync - View 3</h3>
+      <video class="sync-efl-unsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/efl/ours/Z5TlCImQNK0_575_625_2/unsync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+      
+    <div class="video-container efl-video visualsync-video" style="display: none;">
+      <h3>EFL - VisualSync (ours) - View 1</h3>
+      <video class="sync-efl-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/efl/ours/Z5TlCImQNK0_800_860_0/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container efl-video visualsync-video" style="display: none;">
+      <h3>EFL - VisualSync (ours) - View 2</h3>
+      <video class="sync-efl-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/efl/ours/Z5TlCImQNK0_150_200_1/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container efl-video visualsync-video" style="display: none;">
+      <h3>EFL - VisualSync (ours) - View 3</h3>
+      <video class="sync-efl-visualsync" autoplay loop muted playsinline controls>
+        <source src="../static/videos/wild/efl/ours/Z5TlCImQNK0_575_625_2/sync.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script src="common.js"></script>
+  <script>
+    // Initialize page-specific configuration
+    initPageConfig({
+      scenes: ['nba', 'efl'],
+      methods: ['unsync', 'visualsync'],
+      syncSelectors: {
+        nba: {
+          unsync: '.sync-nba-unsync',
+          visualsync: '.sync-nba-visualsync'
+        },
+        efl: {
+          unsync: '.sync-efl-unsync',
+          visualsync: '.sync-efl-visualsync'
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
+
