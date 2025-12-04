@@ -1,0 +1,22 @@
+[submodule "Grounded-SAM-2"]
+	path = Grounded-SAM-2
+	url = https://github.com/IDEA-Research/Grounded-SAM-2.git
+	branch = main
+[submodule "Tracking-Anything-with-DEVA"]
+	path = Tracking-Anything-with-DEVA
+	url = https://github.com/Davidyao99/Tracking-Anything-with-DEVA.git
+[submodule "vggt"]
+	path = vggt
+	url = https://github.com/facebookresearch/vggt.git
+	branch = main
+[submodule "vggt"]
+	path = co-tracker
+	url = https://github.com/facebookresearch/co-tracker
+	branch = main
+[submodule "mast3r"]
+	path = mast3r
+	url = https://github.com/naver/mast3r
+	branch = main
+[submodule "co-tracker"]
+	path = co-tracker
+	url = https://github.com/facebookresearch/co-tracker
